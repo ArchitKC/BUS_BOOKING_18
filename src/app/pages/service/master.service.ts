@@ -20,4 +20,24 @@ export class MasterService {
     //return this.http.get<any[]>(this.apiURl+"searchBus?fromLocation="+fromLocation+"&toLocation="+toLocation+"&travelDate="+travelDate);
     return this.http.get<any[]>(`${this.apiURl}searchBus?fromLocation=${fromLocation}&toLocation=${toLocation}&travelDate=${travelDate}`)
   }
+
+  getScheduleById(id:number):Observable<any[]>{
+    return this.http.get<any[]>(`${this.apiURl}GetBusScheduleById?id=${id}`);
+  }
+
+  getBookedSeats(id:number):Observable<any[]>{
+    return this.http.get<any[]>(`${this.apiURl}getBookedSeats?shceduleId=${id}`);
+  }
+
+  registerUser(userData:any):Observable<any[]>{
+    return this.http.post<any[]>(this.apiURl+"AddNewUser", userData);
+  }
+
+  onBookingTicket(bookingData:any):Observable<any[]>{
+    return this.http.post<any[]>(this.apiURl + "PostBusBooking", bookingData);
+  }
+
+  userSignIn(userLoginData:any){
+    return this.http.post<any[]>(this.apiURl + "login", userLoginData);
+  }
 }
